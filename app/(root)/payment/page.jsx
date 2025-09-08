@@ -2,11 +2,11 @@
 import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "../../components/checkOut/CheckoutForm";
+import CheckoutForm from "@/components/checkOut/CheckoutForm";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
-import { loadClientSecret } from "../../hooks/store/localstorage";
-import OrderItems from "../../components/Order/order";
+import { loadClientSecret } from "@/hooks/store/localstorage";
+import OrderItems from "@/components/Order/order";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY

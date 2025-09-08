@@ -1,7 +1,7 @@
-import Container from "../../components/Container";
-import ChooseAddress from "../../components/checkOut/ChooseAddress";
-import PaymentOption from "../../components/checkOut/PaymentOption";
-import OrderDetails from "../../components/checkOut/OrderDetails";
+import Container from "@/components/Container";
+import ChooseAddress from "@/components/checkOut/ChooseAddress";
+import PaymentOption from "@/components/checkOut/PaymentOption";
+import OrderDetails from "@/components/checkOut/OrderDetails";
 const CheckOut = () => {
   return (
     <div className="w-full min-h-[100vh]">

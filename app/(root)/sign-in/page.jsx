@@ -1,5 +1,5 @@
-import Container from "../../components/Container";
-import SignIn from "../../components/form/sign-in";
+import Container from "@/components/Container";
+import SignIn from "@/components/form/sign-in";
 import React from "react";
 
 const page = () => {

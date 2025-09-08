@@ -1,9 +1,9 @@
-import { Categoryproduct, Singleproduct } from "../../../request/request";
-import { Button } from "../../../components/ui/button";
+import { Categoryproduct, Singleproduct } from "@/request/request";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Heart } from "lucide-react";
-import RelatedProducts from "../../../components/products/RelatedProducts";
-import Qty from "../../../components/Cart/Qty";
+import RelatedProducts from "@/components/products/RelatedProducts";
+import Qty from "@/components/Cart/Qty";
 import parse from "html-react-parser";
 
 const Page = async ({ params }) => {
@@ -29,16 +29,16 @@ const Page = async ({ params }) => {
         <div className="flex flex-wrap  w-full gap-4 shadow-lg p-3">
           <div className="max-w-[400px] w-[90%]   px-2 flex flex-col gap-3 items-center">
             <div className="w-full h-52  ">
-              <Image
+              {/* <Image
                 src={data?.image[0]?.url}
                 alt={data?.name}
                 width={300}
                 height={300}
                 className="object-cover w-full h-[100%] "
-              />
+              /> */}
             </div>
             <div className="flex items-center gap-1 w-full">
-              {data?.image?.map((item, index) => {
+              {/* {data?.image?.map((item, index) => {
                 return (
                   <div key={index} className="max-w-10">
                     <Image
@@ -50,7 +50,7 @@ const Page = async ({ params }) => {
                     />
                   </div>
                 );
-              })}
+              })} */}
             </div>
           </div>
 
@@ -130,7 +130,7 @@ const Page = async ({ params }) => {
           <div id="description" className={` mt-5 `}>
             <h3 className="font-semibold text-xl mb-1">Description:</h3>
 
-            <div className="block">{parse(data?.description)}</div>
+            {/* <div className="block">{parse(data?.description)}</div> */}
           </div>
           {/* // overview  */}
           <div
@@ -138,7 +138,7 @@ const Page = async ({ params }) => {
             className={` mt-5 max-w-3/4 w-[90%] flex flex-col gap-2 `}
           >
             <h3 className="font-bold text-xl ">Overview:</h3>
-            <div className="">{parse(data?.overview)}</div>
+            {/* <div className="">{parse(data?.overview)}</div> */}
           </div>
           {/* // Waranty */}
           <div id="warranty" className={` mt-5 `}>

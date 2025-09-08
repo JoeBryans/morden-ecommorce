@@ -1,9 +1,8 @@
 import { getServerSession } from "next-auth";
-import Container from "../../components/Container";
-import SignUp from "../../components/form/sign-up";
+import Container from "@/components/Container";
+import SignUp from "@/components/form/sign-up";
 import React from "react";
-import { authOptions } from "../../auth";
-import { NextResponse } from "next/server";
+import { authOptions } from "@/auth";
 
 const page = () => {
   const user = getServerSession(authOptions);

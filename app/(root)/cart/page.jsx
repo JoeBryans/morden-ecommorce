@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import { ShoppingBasketIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import CartCard from "../../components/Cart/CartItems";
-import { ClearButton } from "../../components/Cart/cartButton";
+import CartCard from "@/components/Cart/CartItems";
+import { ClearButton } from "@/components/Cart/cartButton";
 
 const Cart = () => {
   const router = useRouter();

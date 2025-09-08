@@ -1,5 +1,5 @@
-import Container from "../../components/Container";
-import Shipping from "../../components/form/shipping";
+import Container from "@/components/Container";
+import Shipping from "@/components/form/shipping";
 
 const page = () => {
   return (

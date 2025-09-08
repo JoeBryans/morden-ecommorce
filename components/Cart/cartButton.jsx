@@ -6,10 +6,10 @@ import {
   addToCart,
   clearCart,
   removeFromCart,
-} from "../../hooks/store/cartSlice";
+} from "@/hooks/store/cartSlice";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { loadClientSecret } from "../../hooks/store/localstorage";
+import { loadClientSecret } from "@/hooks/store/localstorage";
 
 export const AddButton = ({ items }) => {
   const dispatch = useDispatch();

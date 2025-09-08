@@ -1,8 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import NavBar from "../NavBar";
-import { GetUsers } from "../../../action/action";
-import Page from "../../page";
+import { GetUsers } from "@/action/action";
 import Pagenation from "../Pagenation";
 import Link from "next/link";
 

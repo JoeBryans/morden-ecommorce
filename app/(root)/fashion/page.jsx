@@ -1,7 +1,7 @@
 import React from "react";
-import { Fashion } from "../../action/action";
-import ProductCard from "../../components/pages/ProductCard";
-import Container from "../../components/Container";
+import { Fashion } from "@/action/action";
+import ProductCard from "@/components/pages/ProductCard";
+import Container from "@/components/Container";
 const page = async () => {
   const product = await Fashion();
   return (
