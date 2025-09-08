@@ -1,0 +1,312 @@
+
+    <div className=" w-full flex flex-col gap-8 shadow-md rounded-lg  p-5 mx-auto">
+                        <div className="w-full flex flex-wrap  items-center gap-4   ">
+                            <FormField
+                                controle={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem className=" max-w-md w-full mx-auto">
+                                        <FormLabel>Name</FormLabel>
+                                        <FormControl></FormControl>
+                                        <Input placeholder="Product name" {...field} />
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                controle={form.control}
+                                name="brand"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full  mx-auto"}>
+                                        <FormLabel>Brand</FormLabel>
+                                        <FormControl >
+                                            <Input placeholder="Brand" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        <div className="w-full flex flex-wrap  items-center gap-4">
+                            <FormField
+                                controle={form.control}
+                                name="category"
+                                render={({ field }) => (
+                                    <FormItem className=" max-w-md w-full mx-auto">
+                                        <FormLabel>Category</FormLabel>
+                                        <FormControl>
+                                          <Input placeholder="Category" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                controle={form.control}
+                                name="sku"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Sku</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Sku" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className="w-full flex flex-wrap  items-center gap-4">
+                            <FormField
+                                controle={form.control}
+                                name="price"
+                                render={({ field }) => (
+                                    <FormItem className=" max-w-md w-full mx-auto">
+                                        <FormLabel> Price</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Price" {...field} type={"number"} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                controle={form.control}
+                                name="discountPrice"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Discount Price</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                placeholder="discount price"
+                                                {...field}
+                                                type={"number"}
+                                            />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className="w-full flex flex-wrap  items-center gap-4">
+                            <FormField
+                                controle={form.control}
+                                name="quantity"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Quantity</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="quantity" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+
+                            />
+                            <FormField
+                                controle={form.control}
+                                name="lowStock"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Low Stock Alart</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="low stock" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        <div className="w-full flex flex-wrap  items-center gap-4">
+                            <FormField
+                                controle={form.control}
+                                name="units"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Units</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Units" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                controle={form.control}
+                                name="shippingInfo"
+                                render={({ field }) => (
+                                    <FormItem className=" max-w-md w-full mx-auto">
+                                        <FormLabel> Shipping Info</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Shipping Info" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        <div className="w-full flex flex-wrap  items-center gap-4">
+                            <FormField
+                                controle={form.control}
+                                name="warranty"
+                                render={({ field }) => (
+                                    <FormItem className=" max-w-md w-full mx-auto">
+                                        <FormLabel>Warranty</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Warranty" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                controle={form.control}
+                                name="taxRate"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Tax Rate </FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Tax Rate" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        {/* <div className="w-full flex flex-wrap  items-center gap-4">
+                            <FormField
+                                controle={form.control}
+                                name="lowStock"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Low Stock</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="low stock" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                controle={form.control}
+                                name="barcode"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Barcode</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Barcode" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div> */}
+
+
+                        <div className="w-full flex flex-wrap  items-center gap-4">
+                            <FormField
+                                controle={form.control}
+                                name="dimensions"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Dimensions</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="dimensions" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                controle={form.control}
+                                name="weight"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Weight in Kg</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Weight in Kg" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+
+                        <div className="w-full flex flex-wrap  items-center gap-4">
+                            <FormField
+                                controle={form.control}
+                                name="description"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Description</FormLabel>
+                                        <FormControl>
+                                            <Textarea placeholder="product description" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <div className="max-w-md w-full mx-auto flex flex-col relative  items-center gap-4 py-4 border-2 rounded-lg border-dashed">
+                                {uploading && (
+                                    <div className="w-full absolute top-0 left-0 h-full flex items-center justify-center bg-black/30 backdrop-blur-sm z-50">
+                                        <Loader2 size={40} className={"animate-spin"} />
+                                    </div>
+                                )}
+                                <span className="text-xs">Upload Image</span>
+                                <Label htmlFor={"file"} className={"cursor-pointer"}>
+                                    <Camera size={40} />
+                                </Label>
+                                <Input
+                                    id={"file"}
+                                    type={"file"}
+                                    multiple
+                                    maxfiles={10}
+                                    onChange={handleFiles}
+                                    placeholder="image url"
+                                    className={"hidden"}
+                                />
+                                <p className="text-xs">Your are to upload maximum 10 images</p>
+                            </div>
+                        </div>
+                        {/* <ImageUploader open={open} setOpen={setOpen} /> */}
+                        <div className="w-full flex flex-wrap  items-center gap-4 ">
+                            {imageUrl?.map((item, index) => {
+                                return (
+                                    <div key={index} className="flex items-center mx-auto gap-2 w-40 relative">
+                                        <img src={item.url} alt={item.name} className="w-20 h-20 rounded-lg" />
+                                        {/* <X onClick={() => DeleteImage(item.id)} className="absolute top-0 right-0 cursor-pointer" /> */}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <div className="w-full flex justify-center ">
+                            <Button
+                                type="submit"
+                                variant={"primary"}
+                                className={"cursor-pointer font-bold text-lg w-md "}
+                            >
+                                {editProduct ? "Update Product" : "Add Product"}{" "}
+                                {loading && <Loader2 className={"ml-2 animate-spin"} />}
+                            </Button>
+                        </div>
+                    </div>
