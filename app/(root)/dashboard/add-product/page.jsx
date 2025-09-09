@@ -4,7 +4,7 @@ import NavBar from "../NavBar";
 import { NewProduct } from "@/components/form/newProduct";
 const page = () => {
   return (
-    <div className="w-full  overflow-x-hidden">
+    <div className="w-full  overflow`">
       <NavBar seachBar={false} />
       <div className="flex  min-h-[110vh] mt-3">
         <div className="max-w-full overflow-hidden   w-[90%] flex flex-col items-center  mx-auto  ">
