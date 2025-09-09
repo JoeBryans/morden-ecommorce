@@ -9,10 +9,11 @@ import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import * as FaIcons from "react-icons/fa";
-import { Bounce, toast, ToastContainer } from "react-toastify";
+
 import { useState } from "react";
 import Loader from "../Loader";
 import { Card, CardContent } from "../ui/card";
+import { toast } from "sonner";
 const schema = yup.object({
   email: yup.string().min(3).required({ message: "Email is required" }),
   password: yup.string().min(10).required({ message: "Password is required" }),
@@ -72,19 +73,7 @@ const SignIn = () => {
 
   return (
     <>
-      <ToastContainer
-        position="top-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-      />
+
       <Card className=" max-w-[500px] w-[90%] h-max">
         {/* <CardHeader className="">
           <span>Create Account</span>

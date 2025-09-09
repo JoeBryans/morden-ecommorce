@@ -1,12 +1,9 @@
-import { User2 } from "lucide-react";
-import Image from "next/image";
 import React from "react";
-import { getOrder } from "../../../action/action";
+import { getOrder } from "@/action/action";
 import NavBar from "../NavBar";
 import Link from "next/link";
 import Pagenation from "../Pagenation";
-import Container from "../../../components/Container";
-import { Button } from "../../../components/ui/button";
+import { Button } from "@/components/ui/button";
 const page = async ({ searchParams }) => {
   const param = await searchParams;
   const search = param?.search || "";

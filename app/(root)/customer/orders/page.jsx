@@ -1,8 +1,7 @@
 import { getServerSession } from "next-auth";
 import React from "react";
-import { authOptions } from "../../../auth";
-import { getUserOrders } from "../../../action/action";
-import Image from "next/image";
+import { getUserOrders } from "@/action/action";
+import { authOptions } from "@/auth";
 
 const page = async () => {
   const { user } = await getServerSession(authOptions);

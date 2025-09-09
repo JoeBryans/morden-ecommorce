@@ -10,17 +10,10 @@ import * as FaIcons from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import Loader from "../Loader";
-import { Bounce, toast, ToastContainer } from "react-toastify";
+;
 import { Car } from "lucide-react";
 import { Card, CardContent, CardHeader } from "../ui/card";
-import {
-  IKImage,
-  IKVideo,
-  ImageKitProvider,
-  IKUpload,
-  ImageKitContext,
-} from "imagekitio-next";
-import { UploadButton } from "../Uploader";
+import { toast } from "sonner";
 
 const schema = yup.object({
   name: yup.string().min(3).required({ message: "Name is required" }),
@@ -145,19 +138,7 @@ const SignUp = () => {
   };
   return (
     <>
-      <ToastContainer
-        position="top-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-      />
+
       <Card className=" max-w-[500px] w-[90%] h-max text-slate-800">
         <CardHeader className="w-full flex items-center justify-center">
           <span className="text-2xl font-semibold">Create Account</span>
@@ -268,11 +249,10 @@ const SignUp = () => {
                       className="w-4 h-4 text-blue-600 bg-gray-100 rounded-md"
                     />
                     <span
-                      className={`${
-                        items.regEx.test(password)
+                      className={`${items.regEx.test(password)
                           ? "text-green-600 "
                           : "text-red-600"
-                      } `}
+                        } `}
                     >
                       {items.message}
                     </span>
@@ -284,7 +264,7 @@ const SignUp = () => {
                   Button
                   disabled={isLoading && isLoading}
                   variant={"primary"}
-                  // className="p-2 rounded-lg text-white bg-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600 hover:border-2 font-semibold transition:all w-full px-3 cursor-pointer "
+                // className="p-2 rounded-lg text-white bg-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600 hover:border-2 font-semibold transition:all w-full px-3 cursor-pointer "
                 >
                   {isLoading ? <Loader isLoading={isLoading} /> : "sign up"}
                 </Button>
@@ -300,39 +280,39 @@ const SignUp = () => {
               </div>
             </form>
           ) : // <div className="flex flex-col items-center justify-center">
-          //   <Card>
-          //     <CardHeader>
-          //       <span>Add profile picture</span>
-          //     </CardHeader>
-          //     {/* <Image
-          //     src="https://images.unsplash.com/photo-1683277384437-d2c2e1e4b4f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80"
-          //     alt="profile"
-          //     width={200}
-          //     height={200}
-          //     className="rounded-full"
-          //   /> */}
-          //     <UploadButton
-          //       endpoint="imageUploader"
-          //       className="flex items-center w-full rounded-2xl  bg-black/40 shadow-md h-fit py-1 cursor-pointer font-semibold  "
-          //       onClientUploadComplete={(res) => {
-          //         if (res) {
-          //           setFiles(res);
-          //         }
+            //   <Card>
+            //     <CardHeader>
+            //       <span>Add profile picture</span>
+            //     </CardHeader>
+            //     {/* <Image
+            //     src="https://images.unsplash.com/photo-1683277384437-d2c2e1e4b4f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=250&q=80"
+            //     alt="profile"
+            //     width={200}
+            //     height={200}
+            //     className="rounded-full"
+            //   /> */}
+            //     <UploadButton
+            //       endpoint="imageUploader"
+            //       className="flex items-center w-full rounded-2xl  bg-black/40 shadow-md h-fit py-1 cursor-pointer font-semibold  "
+            //       onClientUploadComplete={(res) => {
+            //         if (res) {
+            //           setFiles(res);
+            //         }
 
-          //         alert("Upload Completed");
-          //       }}
-          //       onUploadError={(error) => {
-          //         alert(`ERROR! ${error.message}`);
-          //       }}
-          //     />
-          //     <CardContent>
-          //       <button className="p-2 rounded-lg text-white bg-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600 hover:border-2 font-semibold transition:all w-max px-3">
-          //         {isLoading ? <Loader isLoading={isLoading} /> : "sign up"}
-          //       </button>
-          //     </CardContent>
-          //   </Card>
-          // </div>
-          null}
+            //         alert("Upload Completed");
+            //       }}
+            //       onUploadError={(error) => {
+            //         alert(`ERROR! ${error.message}`);
+            //       }}
+            //     />
+            //     <CardContent>
+            //       <button className="p-2 rounded-lg text-white bg-blue-600 hover:bg-white hover:text-blue-600 hover:border-blue-600 hover:border-2 font-semibold transition:all w-max px-3">
+            //         {isLoading ? <Loader isLoading={isLoading} /> : "sign up"}
+            //       </button>
+            //     </CardContent>
+            //   </Card>
+            // </div>
+            null}
         </CardContent>
       </Card>
     </>
