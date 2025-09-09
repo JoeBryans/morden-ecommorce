@@ -97,32 +97,33 @@ model VerificationToken {
 //   cart               Carts[]
 // }
 model Product {
-  id              String      @id @default(auto()) @map("_id") @db.ObjectId
-  name            String 
-  sku             String?     @unique
-  description     String?
-  images          Image?
-  categoryId      String?     @db.ObjectId
-  category        Category?   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  quantity        Int?
-  price           Float?
-  lowStock        Float?
-  discountPrice        Float?
-  units            String?
-  brand           String
-  dimensions      String?
-  weight          Float?
-  taxRate         Float?
-  shippingInfo    String?
-  warranty        String?
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  sku           String?     @unique
+  description   String?
+  images        Image?
+  categoryId    String?     @db.ObjectId
+  category      Category?   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  quantity      Int?
+  price         Float?
+  lowStock      Float?
+  discountPrice Float?
+  units         String?
+  brand         String
+  dimensions    String?
+  weight        Float?
+  taxRate       Float?
+  shippingInfo  String?
+  warranty      String?
   // location        String?
-  review          Review[]
-  cartItems       CartItems[]
-  orderItems      OrderItem[]
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
-  User            User?       @relation(fields: [userId], references: [id])
-  userId          String?     @db.ObjectId
+  review        Review[]
+  cartItems     CartItems[]
+  orderItems    OrderItem[]
+  deals         Deals[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  User          User?       @relation(fields: [userId], references: [id])
+  userId        String?     @db.ObjectId
 
   @@index([categoryId, name, sku, price])
 }
@@ -136,12 +137,20 @@ model Category {
 }
 
 model Image {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  url       Json?
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  url           Json?
   cloudPublicId String?
   // color     String
-  productId String   @unique @db.ObjectId
+  productId     String   @unique @db.ObjectId
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Deals {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String   @unique @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -222,20 +231,6 @@ model CartItems {
   cartId     String  @db.ObjectId
   cart       Carts   @relation(fields: [cartId], references: [id])
 }
-
-// model OrderItem {
-//   id          String  @id @default(cuid())
-//   orderId     String
-//   order       Order   @relation(fields: [orderId], references: [id])
-//   productId   String
-//   product     Product @relation(fields: [productId], references: [id])
-//   total_qty   Int
-//   total_price Int
-// warning: in the working copy of 'components.json', LF will be replaced by CRLF the next time Git touches it
-// warning: in the working copy of 'eslint.config.mjs', LF will be replaced by CRLF the next time Git touches it
-// warning: in the working copy of 'jsconfig.json', LF will be replaced by CRLF the next time Git touches it
-// warning: in the working copy of 'next.config.mjs', LF will be replaced by CRLF the next time Git touches it
-// }
 
 model Address {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
