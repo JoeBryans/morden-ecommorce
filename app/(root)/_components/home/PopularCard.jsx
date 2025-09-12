@@ -144,31 +144,32 @@ const PopularCard = async () => {
           </Link>
         </Card>
         {/* latest products */}
-        <Card className={"w-full bg-white overflow-x-auto scrollbar-hide"}>
-          <h1 className='ml-4 text-lg font-semibold '>Latest Products from Popular Brands</h1>
-          <div className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
+        <div className='w-full bg-white rounded-2xl pt-2'> <h1 className='ml-4 text-lg font-semibold '>Latest Products from Popular Brands</h1>
+          <Card className={"w-full bg-white overflow-x-auto scrollbar-hide"}>
+            <div className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
 
-            {Latest.map((product) => {
-              return (
-                <CardContent key={product.id}
-                  className={"w-48 flex flex-col items-start py-2 px-1 "}
-                >
-                  <Link href={`/product/category/${product.category.name}`} className='w-full'>
-                    <Image src={product?.images[0]?.url} alt={product?.name} width={100} height={100}
-                      className='w-full h-44 object-cover'
-                    />
+              {Latest.map((product) => {
+                return (
+                  <CardContent key={product.id}
+                    className={"w-48 flex flex-col items-start py-2 px-1 "}
+                  >
+                    <Link href={`/product/category/${product.category.name}`} className='w-full'>
+                      <Image src={product?.images[0]?.url} alt={product?.name} width={100} height={100}
+                        className='w-full h-44 object-cover'
+                      />
 
-                  </Link >
-                </CardContent>
+                    </Link >
+                  </CardContent>
 
-              )
-            }
+                )
+              }
 
 
 
-            )}
-          </div>
-        </Card>
+              )}
+            </div>
+          </Card>
+        </div>
 
         {/* best sellers in computers & accessories */}
         {/* <Card className={"w-full overflow-x-auto scrollbar-hide"}>
