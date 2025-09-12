@@ -1,9 +1,9 @@
 import React from "react";
 import { getOrder } from "@/action/action";
-import NavBar from "../../../(root)/dashboard/NavBar";
 import Link from "next/link";
 import Pagenation from "../_components/Pagenation";
 import { Button } from "@/components/ui/button";
+import NavBar from "../_components/NavBar";
 const page = async ({ searchParams }) => {
   const param = await searchParams;
   const search = param?.search || "";

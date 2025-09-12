@@ -1,11 +1,11 @@
 import Container from "@/components/Container";
 import Image from "next/image";
 import React from "react";
-import NavBar from "../NavBar";
 import { Getproducts } from "@/action/action";
 import Link from "next/link";
 import Pagenation from "../_components/Pagenation";
 import { Button } from "@/components/ui/button";
+import NavBar from "../_components/NavBar";
 const page = async ({ searchParams }) => {
   const param = await searchParams;
   const search = param?.search || "";

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import NavBar from "../../../(root)/dashboard/NavBar";
 import { GetUsers } from "@/action/action";
 import Pagenation from "../_components/Pagenation";
 import Link from "next/link";
+import NavBar from "../_components/NavBar";
 
 const page = async ({ searchParams }) => {
   const param = await searchParams;
