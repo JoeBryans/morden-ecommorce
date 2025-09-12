@@ -96,35 +96,40 @@ model VerificationToken {
 //   cart               Carts[]
 // }
 model Product {
-  id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  name          String
-  sku           String?     @unique
-  description   String?
-  images        Image?
-  categoryId    String?     @db.ObjectId
-  category      Category?   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  quantity      Int?
-  price         Float?
-  lowStock      Float?
-  discountPrice Float?
-  units         String?
-  brand         String
-  dimensions    String?
-  weight        Float?
-  taxRate       Float?
-  shippingInfo  String?
-  warranty      String?
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  sku            String?          @unique
+  description    String?
+  images         Image[]
+  categoryId     String?          @db.ObjectId
+  category       Category?        @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  quantity       Int?
+  price          Float?
+  lowStock       Float?
+  discountPrice  Float?
+  units          String?
+  brand          String
+  dimensions     String?
+  weight         Float?
+  taxRate        Float?
+  shippingInfo   String?
+  warranty       String?
+  additionalInfo Json?
+  size           Json?
   // location        String?
-  review        Review[]
-  cartItems     CartItems[]
-  orderItems    OrderItem[]
-  deals         Deals[]
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  User          User?       @relation(fields: [userId], references: [id])
-  userId        String?     @db.ObjectId
+  color          ProductVariant[]
+  review         Review[]
+  cartItems      CartItems[]
+  orderItems     OrderItem[]
+  deals          Deals[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  userId         String           @db.ObjectId
+  user           User             @relation(fields: [userId], references: [id])
 
-  @@index([categoryId, name, sku, price])
+  @@index([categoryId, name, price])
+  @@index([size, sku])
+  @@index([lowStock, brand])
 }
 
 model Category {
@@ -137,13 +142,22 @@ model Category {
 
 model Image {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  url           Json?
+  url           String?
   cloudPublicId String?
   // color     String
-  productId     String   @unique @db.ObjectId
+  productId     String   @db.ObjectId
   product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+}
+
+model ProductVariant {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  color     String? // e.g. "Titanium Whitesilver"
+  hex       String? // e.g. "#E5E4E2"
+  price     Float?
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String  @db.ObjectId
 }
 
 model Deals {
@@ -168,7 +182,7 @@ model Review {
   productId String   @db.ObjectId
   userId    String?
   // user User @relation(fields: [userId], references: [id])
-  product   Product  @relation(fields: [productId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   rating    Int?
   comment   String?
   createAt  DateTime @default(now())
@@ -195,7 +209,7 @@ model Order {
   orderItems OrderItem[]
   userId     String?     @db.ObjectId
   status     String?     @default("pending")
-  user       User?       @relation(fields: [userId], references: [id])
+  user       User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
   payment    Payment[]
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
@@ -208,8 +222,8 @@ model OrderItem {
   quantity  Int
   price     Float
 
-  order     Order    @relation(fields: [orderId], references: [id])
-  product   Product  @relation(fields: [productId], references: [id])
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -217,24 +231,24 @@ model OrderItem {
 model Carts {
   id        String      @id @default(auto()) @map("_id") @db.ObjectId
   userId    String      @db.ObjectId
-  users     User        @relation(fields: [userId], references: [id])
+  users     User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   cartItems CartItems[]
 }
 
 model CartItems {
   id         String  @id @default(auto()) @map("_id") @db.ObjectId
   productId  String  @db.ObjectId
-  product    Product @relation(fields: [productId], references: [id])
+  product    Product @relation(fields: [productId], references: [id], onDelete: Cascade)
   quantity   Int
   totalPrice Int
   cartId     String  @db.ObjectId
-  cart       Carts   @relation(fields: [cartId], references: [id])
+  cart       Carts   @relation(fields: [cartId], references: [id], onDelete: Cascade)
 }
 
 model Address {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
   userId   String   @db.ObjectId
-  users    User     @relation(fields: [userId], references: [id])
+  users    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   address  String?
   city     String?
   state    String?

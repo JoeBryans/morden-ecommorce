@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
       <Providers>
         <Session>
           <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased text-slate-700   `}
+            className={`${geistSans.variable} ${geistMono.variable} antialiased text-gray-700 bg-gray-50  `}
           >
             <NavBar />
             <Toaster richColors position="top-right" />

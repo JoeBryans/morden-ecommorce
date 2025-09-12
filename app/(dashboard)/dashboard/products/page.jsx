@@ -4,7 +4,7 @@ import React from "react";
 import NavBar from "../NavBar";
 import { Getproducts } from "@/action/action";
 import Link from "next/link";
-import Pagenation from "../Pagenation";
+import Pagenation from "../_components/Pagenation";
 import { Button } from "@/components/ui/button";
 const page = async ({ searchParams }) => {
   const param = await searchParams;

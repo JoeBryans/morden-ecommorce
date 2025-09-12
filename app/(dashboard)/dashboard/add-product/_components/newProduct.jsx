@@ -30,11 +30,10 @@ import { toast, Toaster } from "sonner";
 import { useRouter } from "next/navigation";
 import { cloudinaryLoader } from "next-cloudinary";
 import { GetCategory } from "@/action/category";
-import CloudUploadButton from "../headers/CloudButton";
-import Category from "./category";
-// rich text editor import
+import CloudUploadButton from "@/components/headers/CloudButton";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
+import { AddInfo, Sizes } from "./AddInfo";
 const ReactQuill = dynamic(() => import("react-quill-new"), {
     ssr: false,
 
@@ -89,6 +88,26 @@ const ProductSchema = z.object({
     description: z.string().min(2, {
         message: "Description must be at least 2 characters.",
     }),
+    additionalInfo: z.array(
+        z.object({
+            title: z.string().min(2, {
+                message: "Title must be at least 2 characters.",
+            }),
+            value: z.string().min(2, {
+                message: "Value must be at least 2 characters.",
+            }),
+        })
+    ),
+    color: z.string(),
+    hex: z.string(),
+    size: z.array(
+        z.object({
+            value: z.string().min(1, {
+                message: "Value must be at least 1 characters.",
+            }),
+        })
+    ),
+
     // location: z.string(),
 
 
@@ -98,6 +117,8 @@ export function NewProduct() {
     const [loading, setLoading] = useState(false);
     const [editProduct, setEditProduct] = useState(false);
     const [uploadFiles, setUploadFiles] = useState([]);
+    const [additionalInfo, setAdditionalInfo] = useState([]);
+    const [size, setSize] = useState([]);
     const router = useRouter();
     // form validation
     const form = useForm({
@@ -118,6 +139,10 @@ export function NewProduct() {
             taxRate: "0",
             warranty: "",
             shippingInfo: "",
+            additionalInfo: "",
+            color: "",
+            hex: "",
+            size: "",
 
 
             // location: "",
@@ -156,18 +181,15 @@ export function NewProduct() {
             setCategory(res);
         });
     }, []);
-    // upload image
+    // set additional info
+    useEffect(() => {
+        form.setValue("additionalInfo", additionalInfo);
+    }, [additionalInfo]);
+    // set size
+    useEffect(() => {
+        form.setValue("size", size);
+    }, [size]);
 
-    // async function DeleteImage(id) {
-    //     try {
-    //         cloudinaryLoader.api.delete_resources(id, function (error, result) {
-    //             console.log(result, error);
-    //         });
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-    // edit product
     const handleEdit = async () => {
         console.log("edit", edit);
         if (!edit) return;
@@ -218,18 +240,18 @@ export function NewProduct() {
                 const res = await respond.json(); console.log(res);
                 if (res?.ok) {
                     setLoading(false);
-                    toast.success("product created successfully");
+                    toast.success(res?.message || "product created successfully");
                     router.refresh();
                     return res;
                 } else {
                     setLoading(false);
-                    toast.error("product not created");
+                    toast.error(res?.message || "product not created");
                     return res;
                 }
             }
         } catch (error) {
             setLoading(false);
-            toast.error("product not created");
+            toast.error(error?.message || "product not created");
             console.log(error);
         }
     };
@@ -299,7 +321,7 @@ export function NewProduct() {
                                                         </SelectGroup>
                                                     </SelectContent>
                                                 </Select>
-                                                
+
                                             </div>
 
                                         </FormControl>
@@ -513,6 +535,73 @@ export function NewProduct() {
                                 )}
                             />
                         </div>
+                        <div className="w-full flex flex-wrap  items-center gap-4">
+                            <FormField
+                                controle={form.control}
+                                name="size"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Size</FormLabel>
+                                        <FormControl>
+                                            <Sizes size={size} setSize={setSize} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <div className={"max-w-md w-full mx-auto flex justify-between items-center"}>
+                                <FormField
+                                    controle={form.control}
+                                    name="color"
+                                    render={({ field }) => (
+                                        <FormItem >
+                                            <FormLabel> Color</FormLabel>
+                                            <FormControl>
+                                                <Input placeholder="Color e.g. Titanium Whitesilver" {...field} />
+                                            </FormControl>
+
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    controle={form.control}
+                                    name="hex"
+                                    render={({ field }) => (
+                                        <FormItem >
+                                            <FormLabel>Hex Color </FormLabel>
+                                            <FormControl>
+                                                <Input placeholder="color in hex e.g. #E5E4E2" {...field} />
+                                            </FormControl>
+
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                        </div>
+                        <div className="w-full flex flex-wrap  items-center gap-4">
+                            <FormField
+                                controle={form.control}
+                                name="additionalInfo"
+                                render={({ field }) => (
+                                    <FormItem className={"max-w-md w-full mx-auto"}>
+                                        <FormLabel>Additional Info</FormLabel>
+                                        <FormControl>
+
+                                            <AddInfo additionalInfo={additionalInfo} setAdditionalInfo={setAdditionalInfo} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <div className={"max-w-md w-full mx-auto"}>
+                                <CloudUploadButton uploadFiles={uploadFiles} setUploadFiles={setUploadFiles} />
+                            </div>
+
+                        </div>
 
                         <div className="w-full flex flex-col  items-center gap-4">
                             <FormField
@@ -543,7 +632,7 @@ export function NewProduct() {
                                 )}
                             />
 
-                            <CloudUploadButton uploadFiles={uploadFiles} setUploadFiles={setUploadFiles} /></div>
+                        </div>
                         {/* <ImageUploader open={open} setOpen={setOpen} /> */}
                         <div className="w-full flex flex-wrap justify-center  items-center gap-4  mx-auto ">
                             {uploadFiles?.map((item, index) => {

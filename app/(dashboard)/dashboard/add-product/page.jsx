@@ -1,7 +1,7 @@
 
 import Category from "@/components/form/category";
-import NavBar from "../NavBar";
-import { NewProduct } from "@/components/form/newProduct";
+import { NewProduct } from "./_components/newProduct";
+import NavBar from "../_components/NavBar";
 const page = () => {
   return (
     <div className="w-full  overflow`">

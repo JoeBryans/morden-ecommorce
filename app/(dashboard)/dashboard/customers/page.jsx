@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import NavBar from "../NavBar";
+import NavBar from "../../../(root)/dashboard/NavBar";
 import { GetUsers } from "@/action/action";
-import Pagenation from "../Pagenation";
+import Pagenation from "../_components/Pagenation";
 import Link from "next/link";
 
 const page = async ({ searchParams }) => {

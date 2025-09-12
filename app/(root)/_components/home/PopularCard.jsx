@@ -3,7 +3,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const PopularCard = () => {
+const PopularCard = async () => {
+
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/products/`);
+  console.log("data :", res);
+  const Latest = await res.json();
+  console.log("Latest :", Latest);
   // 5 products data
   const productCard = [
     {
@@ -113,11 +118,11 @@ const PopularCard = () => {
     <div>
       <div className='text-gray-900 flex flex-col gap-10 '>
         {/* deals of the day */}
-        <Card className={"max-w-5xl w-max mx-auto overflow-x-auto scrollbar-hide"}>
+        <Card className={"max-w-5xl bg-white w-max mx-auto overflow-x-auto scrollbar-hide"}>
           <h1 className='ml-4 text-lg font-semibold '>Deals of the Day</h1>
           <Link href="/" className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
 
-            {productCard.slice(0,1).map((product) => {
+            {productCard.slice(0, 1).map((product) => {
               return (
                 <CardContent key={product.id}
                   className={"w-80 max-h-60 flex flex-col items-start py-2 px-1 "}
@@ -139,34 +144,34 @@ const PopularCard = () => {
           </Link>
         </Card>
         {/* latest products */}
-        <Card className={"w-full overflow-x-auto scrollbar-hide"}>
+        <Card className={"w-full bg-white overflow-x-auto scrollbar-hide"}>
           <h1 className='ml-4 text-lg font-semibold '>Latest Products from Popular Brands</h1>
-          <Link href="/" className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
+          <div className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
 
-          {productCard.map((product) => {
-            return (
-              <CardContent key={product.id}
-              className={"w-48 flex flex-col items-start py-2 px-1 "}
-              >
-                <div className='w-full'>
-                  <Image src={product.image} alt={product.name} width={100} height={100} 
-                  className='w-full h-44 object-cover'
-                  />
-                 
-                </div>
-              </CardContent>
+            {Latest.map((product) => {
+              return (
+                <CardContent key={product.id}
+                  className={"w-48 flex flex-col items-start py-2 px-1 "}
+                >
+                  <Link href={`/product/category/${product.category.name}`} className='w-full'>
+                    <Image src={product?.images[0]?.url} alt={product?.name} width={100} height={100}
+                      className='w-full h-44 object-cover'
+                    />
 
-            )
-          }
+                  </Link >
+                </CardContent>
+
+              )
+            }
 
 
 
-          )}
-          </Link>
+            )}
+          </div>
         </Card>
-        
-{/* best sellers in computers & accessories */}
-        <Card className={"w-full overflow-x-auto scrollbar-hide"}>
+
+        {/* best sellers in computers & accessories */}
+        {/* <Card className={"w-full overflow-x-auto scrollbar-hide"}>
           <h1 className='ml-4 text-lg font-semibold '>Best Sellers in Computers & Accessories</h1>
           <Link href="/" className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
 
@@ -190,9 +195,9 @@ const PopularCard = () => {
 
             )}
           </Link>
-        </Card>
-{/* Best Sellers in Clothing, Shoes & Jewelry*/}
-        <Card className={"w-full overflow-x-auto scrollbar-hide"}>
+        </Card> */}
+        {/* Best Sellers in Clothing, Shoes & Jewelry*/}
+        {/* <Card className={"w-full overflow-x-auto scrollbar-hide"}>
           <h1 className='ml-4 text-lg font-semibold '>Best Sellers in Clothing, Shoes & Jewelry</h1>
           <Link href="/" className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
 
@@ -216,10 +221,10 @@ const PopularCard = () => {
 
             )}
           </Link>
-        </Card>
+        </Card> */}
 
         {/* Best Sellers in Electronics & Appliances */}
-        <Card className={"w-full overflow-x-auto scrollbar-hide"}>
+        {/* <Card className={"w-full overflow-x-auto scrollbar-hide"}>
           <h1 className='ml-4 text-lg font-semibold '>Best Sellers in Electronics & Appliances</h1>
           <Link href="/" className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
 
@@ -243,10 +248,10 @@ const PopularCard = () => {
 
             )}
           </Link>
-        </Card>
+        </Card> */}
 
         {/* Best Sellers in Home & Kitchen */}
-        <Card className={"w-full overflow-x-auto scrollbar-hide"}>
+        {/* <Card className={"w-full overflow-x-auto scrollbar-hide"}>
           <h1 className='ml-4 text-lg font-semibold '>Best Sellers in Home & Kitchen</h1>
           <Link href="/" className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
 
@@ -270,10 +275,10 @@ const PopularCard = () => {
 
             )}
           </Link>
-        </Card>
+        </Card> */}
 
-{/* best sellers in phones & accessories */}
-        <Card className={"w-full overflow-x-auto scrollbar-hide"}>
+        {/* best sellers in phones & accessories */}
+        {/* <Card className={"w-full overflow-x-auto scrollbar-hide"}>
           <h1 className='ml-4 text-lg font-semibold '>Best Sellers in Phones & Accessories</h1>
           <Link href="/" className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
 
@@ -297,9 +302,9 @@ const PopularCard = () => {
 
             )}
           </Link>
-        </Card>
-{/* Best Sellers in Grocery & Gourmet Food */}
-        <Card className={"w-full overflow-x-auto scrollbar-hide"}>
+        </Card> */}
+        {/* Best Sellers in Grocery & Gourmet Food */}
+        {/* <Card className={"w-full overflow-x-auto scrollbar-hide"}>
           <h1 className='ml-4 text-lg font-semibold '>Best Sellers in Grocery & Gourmet Food</h1>
           <Link href="/" className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
 
@@ -323,9 +328,9 @@ const PopularCard = () => {
 
             )}
           </Link>
-        </Card>
-{/* Best Sellers in Beauty & Personal Care */}
-        <Card className={"w-full overflow-x-auto scrollbar-hide"}>
+        </Card> */}
+        {/* Best Sellers in Beauty & Personal Care */}
+        {/* <Card className={"w-full overflow-x-auto scrollbar-hide"}>
           <h1 className='ml-4 text-lg font-semibold '>Best Sellers in Beauty & Personal Care</h1>
           <Link href="/" className="flex gap-1 mx-auto  px-4  overflow-auto scrollbar-hide">
 
@@ -349,8 +354,8 @@ const PopularCard = () => {
 
             )}
           </Link>
-        </Card>
-       
+        </Card> */}
+
       </div>
     </div>
   )
